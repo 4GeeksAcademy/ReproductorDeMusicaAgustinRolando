@@ -10,3 +10,33 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+.body{
+    background-color: black;
+    color: white;
+}
+.barra{
+    height: 170px;
+    align-items: center;
+    
+    
+}
+.nombres{
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.nombres:hover{
+    background-color: gray !important;
+}
+.play{
+    color: white;
+    font-size: xx-large;
+}
+.next{
+    color: white;
+    font-size: xx-large;
+
+}
+.back{
+    color: white;
+    font-size: xx-large;
+}
