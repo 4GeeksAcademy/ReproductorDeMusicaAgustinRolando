@@ -42,48 +42,67 @@ const Home = () => {
 		console.log(songURL + indexSong);
 		setIsPlaying(!isPlaying)
 	}
-	const start2 =(id)=>{
+	const start2 = (id) => {
 		// 
 		setIsPlaying(true)
 		setindexSong(id)
-		songs.filter(song=>{
-			if (song.id==id) {
-			audioRef.current.src = 	"https://playground.4geeks.com/apis/fake/sound/" + song.url
-			audioRef.current.play()
-			console.log(indexSong);
+		songs.filter(song => {
+			if (song.id == id) {
+				audioRef.current.src = "https://playground.4geeks.com/apis/fake/sound/" + song.url
+				audioRef.current.play()
+				console.log(indexSong);
 			}
-			
+
 		})
 	}
-//boton para atras
-	const back=()=> {
-	
-		songs.filter(song=>{
-			if (song.id==indexSong && song.id!==0) {
+	//boton para atras
+	const back = () => {
 
-			audioRef.current.src = 	"https://playground.4geeks.com/apis/fake/sound/" + songs[indexSong -1].url;
-			setindexSong(indexSong -1)
-			audioRef.current.play()
-			console.log(audioRef.current,);
-			}
-		})
-	
-		
-	}
-	const next=()=>{
-		songs.filter(song=>
-			
-			{if (song.id==indexSong) {
+		songs.filter((song, index) => {
+			if (song.id == indexSong) {
+				if (index == 0) {
+					console.log(index);
+					console.log(songs.length - 1);
+					audioRef.current.src = "https://playground.4geeks.com/apis/fake/sound/" + songs[songs.length - 1].url;
+					setindexSong(songs.length - 1)
+					audioRef.current.play()
 
-			audioRef.current.src = 	"https://playground.4geeks.com/apis/fake/sound/" + songs[indexSong +1].url;
-			setindexSong(indexSong +1)
-			audioRef.current.play()
-			console.log(audioRef.current,);
+				}
+				else {
+					audioRef.current.src = "https://playground.4geeks.com/apis/fake/sound/" + songs[indexSong - 1].url;
+					setindexSong(indexSong - 1)
+					audioRef.current.play()
+
+				}
 			}
-			
+
 		})
 
+
 	}
+	const next = () => {
+		songs.filter((song, index) => {
+			if (song.id == indexSong) {
+				if (index == 18)
+					audioRef.current.src = "https://playground.4geeks.com/apis/fake/sound/" + songs[0].url;
+				setindexSong(0)
+				audioRef.current.play()
+				
+
+			} else {
+				console.log(indexSong);
+				audioRef.current.src = "https://playground.4geeks.com/apis/fake/sound/" + songs[indexSong - 1].url;
+				setindexSong(indexSong + 1)
+				audioRef.current.play()
+			
+
+			}
+
+
+		})
+
+	}
+	console.log(songs);
 
 
 	return (
@@ -92,7 +111,7 @@ const Home = () => {
 			<div className="text-center list-group list-group-numbered ">
 				{songs.map((song, index) =>
 					<li className="list-group-item bg-dark nombres" key={song.id} onClick={() => {
-						
+
 						start2(song.id)
 
 					}}>{song.name}</li>
@@ -106,11 +125,11 @@ const Home = () => {
 					<a className="nav-link play" ><i className={isPlaying ? "fa-solid fa-pause" : "fa-solid fa-play"} onClick={play} /></a>
 				</li>
 				<li className="nav-item3">
-					<a className="nav-link next" ><i className="fa fa-square-caret-right" onClick={next}/></a>
+					<a className="nav-link next" ><i className="fa fa-square-caret-right" onClick={next} /></a>
 				</li>
 
 			</ul>
-			<audio ref={audioRef} src= " " />
+			<audio ref={audioRef} src=" " />
 		</div>
 	);
 };
