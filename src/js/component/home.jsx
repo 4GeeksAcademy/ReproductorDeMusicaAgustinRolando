@@ -17,13 +17,14 @@ const Home = () => {
 	const [songs, setSongs] = useState([])
 	const songURL = "https://playground.4geeks.com/apis/fake/sound/"
 
-	const getSongsData = () => {
-		//HACER LA PETICION
-		fetch("https://playground.4geeks.com/apis/fake/sound/songs")
-			.then((response) => response.json())//CONVERTIR A .JSON
-			.then((data) => setSongs(data))//GUARDAR	
-			.catch((error) => console.log(error));//ATRAPAR
-
+	 async function getSongsData () {
+		try{
+			let response = await fetch("https://playground.4geeks.com/apis/fake/sound/songs")
+			let data= await response.json()
+			setSongs(data)
+		}catch(error){
+			console.log(error);
+		}
 
 	}
 	// console.log(songs);

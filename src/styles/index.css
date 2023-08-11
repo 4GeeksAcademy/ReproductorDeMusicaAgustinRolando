@@ -13,9 +13,12 @@
 .body{
     background-color: black;
     color: white;
+    width: 720px;
+    margin: auto;
+    margin-top: 30px;
 }
 .barra{
-    height: 170px;
+    height: 100px;
     align-items: center;
     
     
